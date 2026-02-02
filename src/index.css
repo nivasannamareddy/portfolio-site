@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+  font-family: 'Inter', system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #030712;
+  --accent: #ff7b54;
+  --secondary: #0f2f53;
+  --accent-rgb: 255 123 84;
+  --secondary-rgb: 15 47 83;
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  @apply bg-[#0B0F19] text-slate-100 antialiased;
+}
+
+section {
+  scroll-margin-top: 96px;
+}
+
+a {
+  @apply text-white underline-offset-4 transition hover:text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70;
+}
+
+.glass {
+  @apply bg-glass border border-white/10 backdrop-blur-xl;
+}
+.light .glass {
+  @apply bg-white/70 text-slate-900;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+.tag {
+  @apply rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-300;
+}
+
+.eyebrow {
+  @apply text-xs uppercase tracking-[0.2em] text-slate-400;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
