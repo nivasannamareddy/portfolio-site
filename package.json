@@ -7,9 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sanity:dev": "sanity dev --config ./sanity/sanity.config.js --host 0.0.0.0 --port 3333",
+    "sanity:deploy": "sanity deploy --config ./sanity/sanity.config.js"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@sanity/client": "^7.14.1",
+    "@sanity/vision": "^5.7.0",
+    "@vercel/analytics": "^1.6.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.24.7",
     "gsap": "^3.14.2",
@@ -17,6 +23,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.70.0",
+    "sanity": "^5.7.0",
     "three": "^0.182.0"
   },
   "devDependencies": {

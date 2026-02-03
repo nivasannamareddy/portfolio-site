@@ -12,6 +12,9 @@ import StoryFooter from './components/story/StoryFooter'
 import StoryAtmosphere from './components/story/StoryAtmosphere'
 import EditorPanel from './components/EditorPanel'
 import config from './data/config'
+import mergeDeep from './lib/mergeConfig'
+import { fetchSiteData, sanityEnabled } from './lib/sanity'
+import { Analytics } from '@vercel/analytics/react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -27,12 +30,14 @@ const sections = [
 
 function App() {
   const [siteData, setSiteData] = useState(() => {
-    const stored = localStorage.getItem('site-data')
-    if (stored) {
-      try {
-        return JSON.parse(stored)
-      } catch {
-        return config
+    if (!sanityEnabled) {
+      const stored = localStorage.getItem('site-data')
+      if (stored) {
+        try {
+          return JSON.parse(stored)
+        } catch {
+          return config
+        }
       }
     }
     return config
@@ -55,8 +60,26 @@ function App() {
   }, [siteData.meta.description, siteData.meta.title])
 
   useEffect(() => {
-    localStorage.setItem('site-data', JSON.stringify(siteData))
+    if (!sanityEnabled) {
+      localStorage.setItem('site-data', JSON.stringify(siteData))
+    }
   }, [siteData])
+
+  useEffect(() => {
+    if (!sanityEnabled) return
+    let mounted = true
+    fetchSiteData()
+      .then((data) => {
+        if (!mounted || !data) return
+        setSiteData((prev) => mergeDeep(prev, data))
+      })
+      .catch((error) => {
+        console.error('Sanity fetch failed', error)
+      })
+    return () => {
+      mounted = false
+    }
+  }, [])
 
   useEffect(() => {
     const overlay = document.querySelector('[data-section-wipe]')
@@ -80,6 +103,27 @@ function App() {
         }
       )
     })
+  }, [])
+
+  useEffect(() => {
+    const gaId = import.meta.env.VITE_GA_ID
+    if (!gaId) return
+
+    const script = document.createElement('script')
+    script.async = true
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`
+    document.head.appendChild(script)
+
+    window.dataLayer = window.dataLayer || []
+    function gtag() {
+      window.dataLayer.push(arguments)
+    }
+    gtag('js', new Date())
+    gtag('config', gaId, { anonymize_ip: true })
+
+    return () => {
+      document.head.removeChild(script)
+    }
   }, [])
 
   const handlePersonalChange = (field, value) => {
@@ -149,7 +193,11 @@ function App() {
     <div className="relative min-h-screen bg-midnight text-slate-100" style={gradientOverlay}>
       <StoryAtmosphere />
       <div className="pointer-events-none absolute inset-0 bg-grid-overlay bg-[size:28px_28px] opacity-20" />
-      <StoryNav sections={sections} resumeUrl={siteData.personal.resumeUrl} />
+      <StoryNav
+        sections={sections}
+        resumeUrl={siteData.personal.resumeUrl}
+        linkedinUrl={siteData.socials?.linkedin}
+      />
       <main className="relative z-10 px-4 pb-16 pt-28 sm:px-6">
         <StoryHero data={siteData.personal} highlights={siteData.highlights} socials={siteData.socials} />
         <StoryAbout
@@ -174,7 +222,7 @@ function App() {
         <StoryContact contact={siteData.contact} socials={siteData.socials} />
         <StoryFooter personal={siteData.personal} />
       </main>
-      {isAdmin && (
+      {isAdmin && !sanityEnabled && (
         <EditorPanel
           data={siteData}
           onPersonalChange={handlePersonalChange}
@@ -190,6 +238,7 @@ function App() {
           onImport={importContent}
         />
       )}
+      <Analytics />
     </div>
   )
 }

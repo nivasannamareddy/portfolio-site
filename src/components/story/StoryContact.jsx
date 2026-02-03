@@ -1,14 +1,62 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Github, Linkedin } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 
 const StoryContact = ({ contact, socials }) => {
   const [status, setStatus] = useState('')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    setStatus('Thanks for reaching out! I will reply soon.')
-    event.currentTarget.reset()
+    setStatus('Sending...')
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const payload = Object.fromEntries(formData.entries())
+
+    try {
+      if (contact.webhook) {
+        const response = await fetch(contact.webhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        if (!response.ok) throw new Error('Webhook failed')
+      } else if (
+        contact.emailProvider?.serviceId &&
+        contact.emailProvider?.templateId &&
+        contact.emailProvider?.publicKey
+      ) {
+        await emailjs.send(
+          contact.emailProvider.serviceId,
+          contact.emailProvider.templateId,
+          {
+            ...payload,
+            to_email: contact.emailProvider.toEmail || contact.email,
+          },
+          contact.emailProvider.publicKey
+        )
+
+        if (contact.emailProvider.replyTemplateId) {
+          await emailjs.send(
+            contact.emailProvider.serviceId,
+            contact.emailProvider.replyTemplateId,
+            {
+              ...payload,
+              to_email: payload.email,
+            },
+            contact.emailProvider.publicKey
+          )
+        }
+      } else {
+        throw new Error('No contact provider configured')
+      }
+
+      setStatus('Thanks for reaching out! Your message has been sent.')
+      form.reset()
+    } catch (error) {
+      console.error(error)
+      setStatus('Message failed to send. Please email me directly.')
+    }
   }
 
   return (

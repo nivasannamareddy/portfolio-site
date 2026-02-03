@@ -96,7 +96,7 @@ const config = {
       tech: ['Python', 'Prophet', 'ARIMA', 'Power BI'],
       impact: 'Improved revenue optimization by 35%.',
       links: { demo: '#', repo: '#' },
-      images: ['/images/airline.jpg'],
+      images: ['/images/airline.svg'],
       category: 'Machine Learning',
     },
     {
@@ -107,7 +107,7 @@ const config = {
       tech: ['PostgreSQL', 'SQL', 'Tableau', 'Python'],
       impact: 'Improved operational transparency by 30%.',
       links: { demo: '#', repo: '#' },
-      images: ['/images/artistry.jpg'],
+      images: ['/images/artistry.svg'],
       category: 'Data Engineering',
     },
     {
@@ -118,7 +118,7 @@ const config = {
       tech: ['Python', 'Scikit-learn', 'Power BI'],
       impact: 'Optimized fleet allocation by 25%.',
       links: { demo: '#', repo: '#' },
-      images: ['/images/bike.jpg'],
+      images: ['/images/bike.svg'],
       category: 'Analytics',
     },
     {
@@ -129,7 +129,7 @@ const config = {
       tech: ['Python', 'NLP'],
       impact: 'Increased translation accuracy by 35% and reduced response time by 40%.',
       links: { demo: '#', repo: '#' },
-      images: ['/images/multilingual.jpg'],
+      images: ['/images/multilingual.svg'],
       category: 'Publications',
     },
     {
@@ -140,7 +140,7 @@ const config = {
       tech: ['TensorFlow', 'Python', 'OpenCV'],
       impact: 'Improved recognition accuracy by 20%.',
       links: { demo: '#', repo: '#' },
-      images: ['/images/faceid.jpg'],
+      images: ['/images/faceid.svg'],
       category: 'Publications',
     },
   ],
