@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@sanity/client": "^7.14.1",
     "@sanity/preview-kit": "^6.2.0",
     "@sanity/visual-editing": "^5.1.1",
