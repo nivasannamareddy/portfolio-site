@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
           {
             key: 'Content-Security-Policy',
             value:
-              "frame-ancestors 'self' https://nivas-portfolio.sanity.studio https://*.sanity.studio http://localhost:3333 http://localhost:3000",
+              "frame-ancestors 'self' https://*.sanity.studio https://*.sanity.io http://localhost:3333 http://localhost:3000",
           },
         ],
       },
