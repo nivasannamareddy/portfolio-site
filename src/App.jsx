@@ -12,8 +12,6 @@ import StoryFooter from './components/story/StoryFooter'
 import StoryAtmosphere from './components/story/StoryAtmosphere'
 import EditorPanel from './components/EditorPanel'
 import config from './data/config'
-import mergeDeep from './lib/mergeConfig'
-import { fetchSiteData, sanityEnabled } from './lib/sanity'
 import { Analytics } from '@vercel/analytics/react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -30,14 +28,12 @@ const sections = [
 
 function App() {
   const [siteData, setSiteData] = useState(() => {
-    if (!sanityEnabled) {
-      const stored = localStorage.getItem('site-data')
-      if (stored) {
-        try {
-          return JSON.parse(stored)
-        } catch {
-          return config
-        }
+    const stored = localStorage.getItem('site-data')
+    if (stored) {
+      try {
+        return JSON.parse(stored)
+      } catch {
+        return config
       }
     }
     return config
@@ -60,26 +56,8 @@ function App() {
   }, [siteData.meta.description, siteData.meta.title])
 
   useEffect(() => {
-    if (!sanityEnabled) {
-      localStorage.setItem('site-data', JSON.stringify(siteData))
-    }
+    localStorage.setItem('site-data', JSON.stringify(siteData))
   }, [siteData])
-
-  useEffect(() => {
-    if (!sanityEnabled) return
-    let mounted = true
-    fetchSiteData()
-      .then((data) => {
-        if (!mounted || !data) return
-        setSiteData((prev) => mergeDeep(prev, data))
-      })
-      .catch((error) => {
-        console.error('Sanity fetch failed', error)
-      })
-    return () => {
-      mounted = false
-    }
-  }, [])
 
   useEffect(() => {
     const overlay = document.querySelector('[data-section-wipe]')
@@ -222,7 +200,7 @@ function App() {
         <StoryContact contact={siteData.contact} socials={siteData.socials} />
         <StoryFooter personal={siteData.personal} />
       </main>
-      {isAdmin && !sanityEnabled && (
+      {isAdmin && (
         <EditorPanel
           data={siteData}
           onPersonalChange={handlePersonalChange}

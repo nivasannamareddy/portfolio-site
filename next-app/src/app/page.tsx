@@ -13,8 +13,6 @@ import StoryContact from '@/components/story/StoryContact'
 import StoryFooter from '@/components/story/StoryFooter'
 import StoryAtmosphere from '@/components/story/StoryAtmosphere'
 import config from '@/data/config'
-import mergeDeep from '@/lib/mergeConfig'
-import { fetchSiteData, sanityEnabled } from '@/lib/sanity.client'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -40,19 +38,7 @@ export default function Home() {
   )
 
   useEffect(() => {
-    if (!sanityEnabled) return
-    let mounted = true
-    fetchSiteData()
-      .then((data) => {
-        if (!mounted || !data) return
-        setSiteData((prev) => mergeDeep(prev, data))
-      })
-      .catch((error) => {
-        console.error('Sanity fetch failed', error)
-      })
-    return () => {
-      mounted = false
-    }
+    setSiteData(config)
   }, [])
 
   return (

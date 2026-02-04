@@ -33,36 +33,6 @@ Edit `src/data/config.js`:
 - `contact`: email, phone, location, response-time text.
 - `theme`: tweak accent/secondary colors if desired.
 
-## No‑Code Editing (Sanity CMS)
-This project supports Sanity for permanent, no‑code updates.
-
-### 1) Create a Sanity project
-- Go to https://www.sanity.io and create a free account.
-- Create a new project and dataset (use `production`).
-- Copy your **Project ID**.
-
-### 2) Configure environment variables
-Create a `.env` file in the project root:
-```bash
-VITE_SANITY_PROJECT_ID=your_project_id
-VITE_SANITY_DATASET=production
-VITE_SANITY_API_VERSION=2024-01-01
-
-# For the Sanity Studio (optional, if you run it locally)
-SANITY_STUDIO_PROJECT_ID=your_project_id
-SANITY_STUDIO_DATASET=production
-```
-
-### 3) Create content in Sanity
-Sanity schema is defined in `sanity/schemaTypes/site.js`.
-Create a single document of type **Site Settings** and fill in the fields.
-
-### 4) Deploy
-Push to GitHub → Vercel auto‑deploys. Your site now pulls from Sanity.
-
-Notes:
-- If Sanity is configured, the local in‑browser editor is disabled to avoid conflicts.
-- If Sanity is not configured, the site falls back to `config.js` and localStorage edits.
 
 ### Assets
 - Replace `public/resume.pdf` with your real resume to keep the download CTA working.
