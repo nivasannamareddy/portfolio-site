@@ -5,7 +5,7 @@ import { visionTool } from '@sanity/vision'
 import { presentationTool } from 'sanity/presentation'
 import { schemaTypes } from './schemaTypes'
 
-const previewUrl = 'https://portfolio-site-kh7fo12dx-nivasannamareddys-projects.vercel.app/'
+const previewUrl = 'https://portfolio-site-h615.vercel.app/'
 
 const PreviewPane = () =>
   React.createElement('iframe', {
