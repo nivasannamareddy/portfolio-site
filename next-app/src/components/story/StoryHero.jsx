@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const StoryHero = ({ data, highlights = [] }) => {
+const StoryHero = ({ data }) => {
   const sectionRef = useRef(null)
   const titleRef = useRef(null)
 
@@ -34,18 +34,12 @@ const StoryHero = ({ data, highlights = [] }) => {
     <section id="hero" ref={sectionRef} className="relative flex min-h-screen items-center bg-[#0B0F19] py-24">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
-          <p className="eyebrow hero-intro text-cyan-200">Hello, I'm</p>
+          <p className="eyebrow hero-intro text-cyan-200">Hello, I’m</p>
           <h1 ref={titleRef} className="mt-4 font-display text-4xl text-white sm:text-6xl">
             <span className="block">{data.name}</span>
           </h1>
           <p className="hero-intro mt-4 text-xl text-slate-300">{data.title}</p>
           <p className="hero-intro mt-6 max-w-xl text-lg leading-relaxed text-slate-400">{data.bio}</p>
-          {highlights.length >= 2 && (
-            <p className="hero-intro mt-4 max-w-xl text-sm font-semibold text-slate-200">
-              Built analytics and ML solutions improving accuracy and efficiency by up to{' '}
-              <span className="text-white">{highlights[0].value}</span>–<span className="text-white">{highlights[1].value}</span>.
-            </p>
-          )}
           <div className="hero-intro mt-8 flex flex-wrap gap-4">
             <a
               className="rounded-full bg-cyan-300 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-midnight transition hover:-translate-y-0.5"

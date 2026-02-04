@@ -8,14 +8,14 @@ const config = {
     name: 'Nivas Annamareddy',
     headline: 'Transforming complex data into confident decisions.',
     typed: ['Data Analyst', 'Machine Learning Engineer', 'Visualization Strategist'],
-    title: 'Aspiring Data Scientist | Data Analyst / ML Engineer',
+    title: 'Data Scientist | ML Engineer',
     location: 'Richardson, TX 75080',
     email: 'Nivasannamareddy@gmail.com',
     phone: '+1 (945) 713-3085',
     resumeUrl: '/resume.pdf',
     avatar: '/assets/profile.png',
     status: 'Actively seeking full-time roles (May 2026)',
-    bio: 'Aspiring data scientist specializing in ML, predictive analytics, and data storytelling. Experienced with Python, SQL, and forecasting models that turn complex data into clear decisions.',
+    bio: 'I am a data professional with a strong foundation in machine learning, statistical analysis, and predictive modeling. I have hands-on experience in Python, SQL, and end-to-end data workflows through internships and academic projects, including regression, classification, time-series forecasting, and natural language processing. I focus on transforming complex datasets into actionable insights, developing reliable analytical models, and supporting data-driven decision-making.',
   },
   socials: {
     linkedin: 'https://www.linkedin.com/in/nivas-annamareddy',
@@ -23,9 +23,23 @@ const config = {
     email: 'mailto:Nivasannamareddy@gmail.com',
   },
   highlights: [
-    { label: 'Workflow', value: '30%', description: 'Exit processing time reduced.' },
-    { label: 'Dashboards', value: '40%', description: 'Analysis time reduction via Power BI.' },
-    { label: 'Forecasting', value: '35%', description: 'Revenue optimization improvement.' },
+    {
+      label: 'Workflow Efficiency',
+      value: '30%',
+      description: 'Reduced exit processing time by streamlining analytics workflows and automation.',
+    },
+    {
+      label: 'Dashboard Optimization',
+      value: '40%',
+      description:
+        'Decreased analysis time by designing interactive Power BI dashboards for faster reporting.',
+    },
+    {
+      label: 'Forecasting Improvement',
+      value: '35%',
+      description:
+        'Enhanced revenue optimization through accurate time-series forecasting models.',
+    },
   ],
   skills: [
     {
@@ -100,17 +114,6 @@ const config = {
       category: 'Machine Learning',
     },
     {
-      title: 'Face Recognition Benchmarking',
-      period: 'Jul 2023 – Dec 2023',
-      description:
-        'Evaluated classification algorithms and improved recognition accuracy using deep learning and feature extraction.',
-      tech: ['TensorFlow', 'Python', 'OpenCV'],
-      impact: 'Improved recognition accuracy by 20%.',
-      links: { demo: '#', repo: '#' },
-      images: ['/images/faceid.svg'],
-      category: 'Machine Learning',
-    },
-    {
       title: 'Bike Rental Demand Intelligence',
       period: 'Feb 2023 – May 2023',
       description:
@@ -122,17 +125,6 @@ const config = {
       category: 'Analytics',
     },
     {
-      title: 'Multilingual Communication System',
-      period: 'Jan 2024 – May 2024',
-      description:
-        'Built a real-time ML-based translation system to speed conversations and reduce response time.',
-      tech: ['Python', 'NLP'],
-      impact: 'Increased translation accuracy by 35% and reduced response time by 40%.',
-      links: { demo: '#', repo: '#' },
-      images: ['/images/multilingual.svg'],
-      category: 'NLP',
-    },
-    {
       title: 'Artistry Archive – Gallery Data Platform',
       period: 'Aug 2025 – Dec 2025',
       description:
@@ -142,6 +134,21 @@ const config = {
       links: { demo: '#', repo: 'https://github.com/nivasannamareddy/Artistry-Archive-Database-for-Art-Gallery-Management' },
       images: ['/images/artistry.svg'],
       category: 'Data Engineering',
+    },
+  ],
+  publications: [
+    {
+      title:
+        'Advancing Multilingual Communication: Real-Time Language Translation in Social Media Platforms Leveraging Advanced Machine Learning Models',
+      description:
+        'Research on real-time multilingual translation pipelines for social media, emphasizing accuracy and response-time improvements with advanced ML models.',
+      link: 'https://jchr.org/index.php/JCHR/article/view/4319',
+    },
+    {
+      title: 'Comparison of Various Face Recognition Algorithms in ML/DS',
+      description:
+        'Comparative study of face recognition algorithms, evaluating accuracy and performance across ML/DL approaches.',
+      link: 'https://ieeexplore.ieee.org/document/10104690',
     },
   ],
   timeline: [

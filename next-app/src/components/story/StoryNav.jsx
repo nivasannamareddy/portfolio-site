@@ -4,7 +4,11 @@ const StoryNav = ({ sections, resumeUrl, linkedinUrl }) => (
   <header className="fixed inset-x-0 top-0 z-40 bg-[#0B0F19]/90 backdrop-blur">
     <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
       <div className="flex items-center gap-3">
-        <span className="h-2 w-2 rounded-full bg-cyan-300" aria-hidden="true" />
+        <img
+          src="/nivas-logo.png"
+          alt="Nivas Annamareddy logo"
+          className="h-8 w-8 rounded-full object-cover"
+        />
         <p className="font-display text-sm uppercase tracking-[0.3em] text-white">Nivas Annamareddy</p>
       </div>
       <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">

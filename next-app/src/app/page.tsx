@@ -12,6 +12,7 @@ import StoryTimeline from '@/components/story/StoryTimeline'
 import StoryContact from '@/components/story/StoryContact'
 import StoryFooter from '@/components/story/StoryFooter'
 import StoryAtmosphere from '@/components/story/StoryAtmosphere'
+import StoryPublications from '@/components/story/StoryPublications'
 import config from '@/data/config'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -21,6 +22,7 @@ const sections = [
   { id: 'about', label: 'About' },
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
+  { id: 'publications', label: 'Publications' },
   { id: 'experience', label: 'Experience' },
   { id: 'education', label: 'Education' },
   { id: 'contact', label: 'Contact' },
@@ -51,14 +53,15 @@ export default function Home() {
         linkedinUrl={siteData.socials?.linkedin}
       />
       <main className="relative z-10 px-4 pb-16 pt-28 sm:px-6">
-        <StoryHero data={siteData.personal} highlights={siteData.highlights} />
+        <StoryHero data={siteData.personal} />
         <StoryAbout
           personal={siteData.personal}
           certifications={siteData.certifications}
           highlights={siteData.highlights}
         />
-        <StoryProjects projects={siteData.projects} />
         <StorySkills skills={siteData.skills} />
+        <StoryProjects projects={siteData.projects} />
+        <StoryPublications items={siteData.publications} />
         <StoryTimeline
           id="experience"
           eyebrow="Experience"
