@@ -30,8 +30,8 @@ const StoryAbout = ({ personal, certifications, highlights }) => {
       <div className="mx-auto grid max-w-5xl gap-10">
         <div className="about-block">
           <p className="eyebrow">About</p>
-          <h2 className="mt-3 font-display text-3xl text-white">Professional summary</h2>
-          <p className="mt-4 text-lg text-slate-300">{personal.bio}</p>
+          <h2 className="mt-3 font-display text-3xl text-white">About Me</h2>
+          <p className="mt-4 text-lg leading-relaxed text-slate-300">{personal.bio}</p>
         </div>
         <div className="about-block grid gap-6 sm:grid-cols-3">
           {highlights.map((item) => (

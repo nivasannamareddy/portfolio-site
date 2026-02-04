@@ -7,6 +7,19 @@ gsap.registerPlugin(ScrollTrigger)
 const StoryTimeline = ({ id, eyebrow, title, items }) => {
   const sectionRef = useRef(null)
 
+  const highlightPercents = (text) => {
+    if (!text) return text
+    return text.split(/(\d+%)/g).map((part, index) =>
+      /\d+%/.test(part) ? (
+        <span key={`${part}-${index}`} className="font-semibold text-white">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    )
+  }
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from('.timeline-card', {
@@ -38,14 +51,19 @@ const StoryTimeline = ({ id, eyebrow, title, items }) => {
               <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{item.period}</p>
               <h3 className="mt-2 text-lg font-semibold text-white">{item.title}</h3>
               <p className="text-sm text-slate-400">{item.org}</p>
-              <ul className="mt-3 space-y-2 text-sm text-slate-300">
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-300">
                 {item.bullets.map((bullet) => (
                   <li key={bullet} className="flex items-start gap-2">
                     <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white" />
-                    {bullet}
+                    <span>{highlightPercents(bullet)}</span>
                   </li>
                 ))}
               </ul>
+              {item.tech?.length ? (
+                <p className="mt-4 text-xs uppercase tracking-[0.2em] text-slate-400">
+                  Tools: <span className="font-medium text-slate-200">{item.tech.join(', ')}</span>
+                </p>
+              ) : null}
             </div>
           ))}
         </div>

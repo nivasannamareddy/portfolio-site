@@ -51,7 +51,7 @@ export default function Home() {
         linkedinUrl={siteData.socials?.linkedin}
       />
       <main className="relative z-10 px-4 pb-16 pt-28 sm:px-6">
-        <StoryHero data={siteData.personal} />
+        <StoryHero data={siteData.personal} highlights={siteData.highlights} />
         <StoryAbout
           personal={siteData.personal}
           certifications={siteData.certifications}

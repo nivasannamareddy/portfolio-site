@@ -65,7 +65,9 @@ const StoryContact = ({ contact, socials }) => {
         <div>
           <p className="eyebrow">Contact</p>
           <h2 className="mt-3 font-display text-3xl text-white">Let’s connect.</h2>
-          <p className="mt-4 text-lg text-slate-300">Share your role or project, and I’ll reply within 24 hours.</p>
+          <p className="mt-4 text-lg leading-relaxed text-slate-300">
+            Share your role or project, and I’ll reply within 24 hours.
+          </p>
           <motion.form
             onSubmit={handleSubmit}
             className="mt-8 space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5"
@@ -128,13 +130,13 @@ const StoryContact = ({ contact, socials }) => {
           </div>
           <div className="mt-6 flex flex-col gap-4 text-sm uppercase tracking-[0.2em] text-slate-300">
             <a href={socials.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3">
-              <Linkedin size={20} /> LinkedIn
+              <Linkedin size={24} /> LinkedIn
             </a>
             <a href={socials.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3">
-              <Github size={20} /> GitHub
+              <Github size={24} /> GitHub
             </a>
             <a href={socials.email} className="inline-flex items-center gap-3">
-              <Mail size={20} /> Email
+              <Mail size={24} /> Email
             </a>
           </div>
         </div>

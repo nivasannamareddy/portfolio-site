@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const StoryHero = ({ data }) => {
+const StoryHero = ({ data, highlights = [] }) => {
   const sectionRef = useRef(null)
   const titleRef = useRef(null)
 
@@ -39,7 +39,13 @@ const StoryHero = ({ data }) => {
             <span className="block">{data.name}</span>
           </h1>
           <p className="hero-intro mt-4 text-xl text-slate-300">{data.title}</p>
-          <p className="hero-intro mt-6 max-w-xl text-lg text-slate-400">{data.bio}</p>
+          <p className="hero-intro mt-6 max-w-xl text-lg leading-relaxed text-slate-400">{data.bio}</p>
+          {highlights.length >= 2 && (
+            <p className="hero-intro mt-4 max-w-xl text-sm font-semibold text-slate-200">
+              Built analytics and ML solutions improving accuracy and efficiency by up to{' '}
+              <span className="text-white">{highlights[0].value}</span>–<span className="text-white">{highlights[1].value}</span>.
+            </p>
+          )}
           <div className="hero-intro mt-8 flex flex-wrap gap-4">
             <a
               className="rounded-full bg-cyan-300 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-midnight transition hover:-translate-y-0.5"
