@@ -1,6 +1,6 @@
 import { lazy, Suspense, useMemo } from 'react'
 import { motion as Motion } from 'framer-motion'
-import { ArrowRight, Download, Github, Linkedin, MapPin } from 'lucide-react'
+import { ArrowRight, Github, Linkedin, MapPin } from 'lucide-react'
 import useSceneEnabled from '../../hooks/useSceneEnabled'
 
 const StoryHeroScene = lazy(() => import('./StoryHeroScene'))
@@ -109,15 +109,6 @@ const StoryHero = ({ data, highlights, socials }) => {
               >
                 View Projects
                 <ArrowRight size={15} className="transition group-hover:translate-x-1" />
-              </a>
-              <a
-                href={data.resumeUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-[0.95rem] border border-white/[0.12] px-6 py-3 text-sm font-semibold text-[color:var(--text)] transition duration-200 hover:scale-[1.02] hover:border-white/25 hover:bg-white/[0.04]"
-              >
-                <Download size={15} />
-                Resume
               </a>
             </Motion.div>
 
