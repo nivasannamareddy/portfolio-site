@@ -49,7 +49,7 @@ const StoryNav = ({ sections, activeSection, personal, resumeUrl }) => {
         </nav>
 
         <div className="flex items-center gap-2">
-          <
+          <a
             href="#contact"
             className="inline-flex rounded-[0.85rem] border border-[rgba(56,189,248,0.3)] bg-[rgba(56,189,248,0.08)] px-4 py-2 text-[0.72rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)] transition duration-200 hover:scale-[1.02] hover:bg-[color:var(--accent)] hover:text-[color:var(--bg)]"
           >
