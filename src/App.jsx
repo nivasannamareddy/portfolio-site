@@ -1,51 +1,49 @@
-import { useEffect, useMemo, useState } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import StoryNav from './components/story/StoryNav'
-import StoryHero from './components/story/StoryHero'
-import StoryAbout from './components/story/StoryAbout'
-import StoryProjects from './components/story/StoryProjects'
-import StorySkills from './components/story/StorySkills'
-import StoryTimeline from './components/story/StoryTimeline'
-import StoryContact from './components/story/StoryContact'
 import StoryFooter from './components/story/StoryFooter'
+import StoryHero from './components/story/StoryHero'
 import StoryAtmosphere from './components/story/StoryAtmosphere'
 import EditorPanel from './components/EditorPanel'
 import config from './data/config'
+import mergeDeep from './lib/mergeConfig'
 import { Analytics } from '@vercel/analytics/react'
 
-gsap.registerPlugin(ScrollTrigger)
+const StoryAbout = lazy(() => import('./components/story/StoryAbout'))
+const StoryFeaturedProject = lazy(() => import('./components/story/StoryFeaturedProject'))
+const StorySystems = lazy(() => import('./components/story/StorySystems'))
+const StoryProjects = lazy(() => import('./components/story/StoryProjects'))
+const StoryGithub = lazy(() => import('./components/story/StoryGithub'))
+const StorySkills = lazy(() => import('./components/story/StorySkills'))
+const StoryCertifications = lazy(() => import('./components/story/StoryCertifications'))
+const StoryTimeline = lazy(() => import('./components/story/StoryTimeline'))
+const StoryContact = lazy(() => import('./components/story/StoryContact'))
 
 const sections = [
-  { id: 'hero', label: 'Home' },
-  { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Capabilities' },
+  { id: 'impact', label: 'Impact' },
   { id: 'projects', label: 'Projects' },
-  { id: 'skills', label: 'Skills' },
   { id: 'experience', label: 'Experience' },
-  { id: 'education', label: 'Education' },
+  { id: 'github', label: 'Code' },
   { id: 'contact', label: 'Contact' },
 ]
 
+const SectionFallback = () => (
+  <div className="section-shell py-8 text-sm text-[color:var(--muted)]">Loading section…</div>
+)
+
 function App() {
+  const [activeSection, setActiveSection] = useState('skills')
   const [siteData, setSiteData] = useState(() => {
-    const stored = localStorage.getItem('site-data')
+    const stored = localStorage.getItem('site-data-v4')
     if (stored) {
       try {
-        return JSON.parse(stored)
+        return mergeDeep(config, JSON.parse(stored))
       } catch {
         return config
       }
     }
     return config
   })
-
-  const gradientOverlay = useMemo(
-    () => ({
-      background:
-        'radial-gradient(circle at 20% 10%, rgba(111, 229, 193, 0.12), transparent 40%), radial-gradient(circle at 80% 0%, rgba(255, 123, 84, 0.18), transparent 35%), radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.16), transparent 45%)',
-    }),
-    []
-  )
 
   useEffect(() => {
     document.title = siteData.meta.title
@@ -56,31 +54,30 @@ function App() {
   }, [siteData.meta.description, siteData.meta.title])
 
   useEffect(() => {
-    localStorage.setItem('site-data', JSON.stringify(siteData))
+    localStorage.setItem('site-data-v4', JSON.stringify(siteData))
   }, [siteData])
 
   useEffect(() => {
-    const overlay = document.querySelector('[data-section-wipe]')
-    if (!overlay) return
-    const sections = document.querySelectorAll('section[id]')
-    sections.forEach((section) => {
-      gsap.fromTo(
-        overlay,
-        { scaleY: 0, opacity: 0 },
-        {
-          scaleY: 1,
-          opacity: 0.6,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 80%',
-            end: 'top 30%',
-            scrub: true,
-          },
-        }
-      )
-    })
+    const observedSections = Array.from(document.querySelectorAll('main section[id]'))
+    if (!observedSections.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)
+
+        if (!visibleEntries.length) return
+        setActiveSection(visibleEntries[0].target.id)
+      },
+      {
+        rootMargin: '-20% 0px -55% 0px',
+        threshold: [0.18, 0.35, 0.55],
+      }
+    )
+
+    observedSections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -138,7 +135,7 @@ function App() {
 
   const resetContent = () => {
     setSiteData(config)
-    localStorage.removeItem('site-data')
+    localStorage.removeItem('site-data-v4')
   }
 
   const exportContent = () => {
@@ -155,8 +152,9 @@ function App() {
 
   const importContent = (data) => {
     try {
-      setSiteData(data)
-      localStorage.setItem('site-data', JSON.stringify(data))
+      const mergedData = mergeDeep(config, data)
+      setSiteData(mergedData)
+      localStorage.setItem('site-data-v4', JSON.stringify(mergedData))
     } catch (error) {
       console.error('Import failed', error)
     }
@@ -168,38 +166,39 @@ function App() {
   }, [])
 
   return (
-    <div className="relative min-h-screen bg-midnight text-slate-100" style={gradientOverlay}>
+    <div className="min-h-screen bg-[color:var(--bg)] text-[color:var(--text)]">
       <StoryAtmosphere />
-      <div className="pointer-events-none absolute inset-0 bg-grid-overlay bg-[size:28px_28px] opacity-20" />
       <StoryNav
         sections={sections}
+        activeSection={activeSection}
+        personal={siteData.personal}
         resumeUrl={siteData.personal.resumeUrl}
-        linkedinUrl={siteData.socials?.linkedin}
       />
-      <main className="relative z-10 px-4 pb-16 pt-28 sm:px-6">
+      <main className="relative z-10 overflow-x-clip pb-16 pt-20 sm:pt-24">
         <StoryHero data={siteData.personal} highlights={siteData.highlights} socials={siteData.socials} />
-        <StoryAbout
-          personal={siteData.personal}
-          certifications={siteData.certifications}
-          highlights={siteData.highlights}
-        />
-        <StoryProjects projects={siteData.projects} />
-        <StorySkills skills={siteData.skills} />
-        <StoryTimeline
-          id="experience"
-          eyebrow="Experience"
-          title="Building analytics and ML impact in internships and research."
-          items={siteData.timeline.filter((item) => item.type === 'experience')}
-        />
-        <StoryTimeline
-          id="education"
-          eyebrow="Education"
-          title="Graduate studies rooted in analytics, data engineering, and ML."
-          items={siteData.timeline.filter((item) => item.type === 'education')}
-        />
-        <StoryContact contact={siteData.contact} socials={siteData.socials} />
-        <StoryFooter personal={siteData.personal} />
+        <Suspense fallback={<SectionFallback />}>
+          <StorySkills />
+          <StoryCertifications items={siteData.certifications} />
+          <StoryAbout highlights={siteData.highlights} />
+          <StoryFeaturedProject projects={siteData.projects} />
+          <StoryProjects projects={siteData.projects} />
+          <StorySystems />
+          <StoryTimeline
+            id="experience"
+            eyebrow="Experience"
+            title="Experience delivering measurable business impact"
+            items={siteData.timeline.filter((item) => item.type === 'experience')}
+            variant="experience"
+          />
+          <StoryGithub githubUrl={siteData.socials.github} projects={siteData.projects} />
+          <StoryContact
+            contact={siteData.contact}
+            socials={siteData.socials}
+            personal={siteData.personal}
+          />
+        </Suspense>
       </main>
+      <StoryFooter personal={siteData.personal} />
       {isAdmin && (
         <EditorPanel
           data={siteData}

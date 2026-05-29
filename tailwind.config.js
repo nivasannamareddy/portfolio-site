@@ -5,22 +5,24 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
         sans: ['"Inter"', 'system-ui', 'sans-serif'],
       },
       colors: {
-        midnight: '#0b172a',
-        ocean: 'rgb(var(--secondary-rgb) / <alpha-value>)',
+        midnight: '#0c1118',
+        ocean: '#121926',
         accent: 'rgb(var(--accent-rgb) / <alpha-value>)',
-        mint: '#6fe5c1',
-        glass: 'rgba(255,255,255,0.08)',
+        'accent-2': 'rgb(var(--accent-2-rgb) / <alpha-value>)',
+        sky: { 400: '#38bdf8' },
+        indigo: { 400: '#818cf8' },
+        glass: 'rgba(255,255,255,0.05)',
       },
       boxShadow: {
-        glow: '0 10px 50px rgba(111, 229, 193, 0.18)',
+        glow: '0 12px 28px rgba(124, 199, 255, 0.18)',
       },
       backgroundImage: {
         'grid-overlay':
-          'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0)',
+          'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0)',
       },
     },
   },

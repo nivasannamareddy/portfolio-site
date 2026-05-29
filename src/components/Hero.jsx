@@ -62,7 +62,7 @@ const Hero = ({ id, data, highlights, socials }) => {
       >
         <p className="tag mb-4 inline-flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-mint" />
-          Available for Data Analyst / ML roles
+          Available for Software Engineer / AI Engineer roles
         </p>
         <h1 className="font-display text-4xl leading-tight sm:text-5xl lg:text-6xl">
           {data.headline}

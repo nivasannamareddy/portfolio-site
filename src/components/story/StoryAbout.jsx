@@ -1,61 +1,54 @@
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { motion as Motion } from 'framer-motion'
 
-gsap.registerPlugin(ScrollTrigger)
+const StoryAbout = ({ highlights }) => (
+  <section id="impact" className="relative py-16 sm:py-20">
+    <div className="section-shell">
+      <div className="grid gap-8 border-y border-white/10 py-8 lg:grid-cols-[240px_minmax(0,1fr)] lg:items-start lg:gap-14">
+        <Motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="eyebrow">Impact</p>
+          <h2 className="section-title mt-4">Proven business impact</h2>
+        </Motion.div>
 
-const StoryAbout = ({ personal, certifications, highlights }) => {
-  const sectionRef = useRef(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.about-block', {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        stagger: 0.15,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-        },
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
-
-  return (
-    <section id="about" ref={sectionRef} className="relative py-20">
-      <div className="mx-auto grid max-w-5xl gap-10">
-        <div className="about-block">
-          <p className="eyebrow">About</p>
-          <h2 className="mt-3 font-display text-3xl text-white">Professional summary</h2>
-          <p className="mt-4 text-lg text-slate-300">{personal.bio}</p>
-        </div>
-        <div className="about-block grid gap-6 sm:grid-cols-3">
-          {highlights.map((item) => (
-            <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-2xl font-semibold text-white">{item.value}</p>
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{item.label}</p>
-              <p className="mt-2 text-xs text-slate-500">{item.description}</p>
-            </div>
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-2 lg:gap-5">
+          {highlights.map((item, index) => (
+            <Motion.div
+              key={item.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.4, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -3 }}
+              className="group relative rounded-2xl border border-white/[0.08] p-5 transition-all duration-300 hover:border-[rgba(56,189,248,0.2)] hover:shadow-[0_16px_32px_rgba(0,0,0,0.28)]"
+              style={{ background: 'rgba(18,25,38,0.7)' }}
+            >
+              <div
+                className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/[0.04] via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
+              <p
+                className="font-display text-[2.4rem] leading-tight bg-clip-text text-transparent"
+                style={{ backgroundImage: 'linear-gradient(90deg, #38bdf8, #818cf8)' }}
+              >
+                {item.value}
+              </p>
+              <p className="mt-2 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-[color:var(--text)]">
+                {item.label}
+              </p>
+              {item.description ? (
+                <p className="mt-2 text-[0.8rem] leading-6 text-[color:var(--muted)]">
+                  {item.description}
+                </p>
+              ) : null}
+            </Motion.div>
           ))}
         </div>
-        <div className="about-block">
-          <p className="eyebrow">Certifications</p>
-          <ul className="mt-4 grid gap-3 text-sm text-slate-300">
-            {certifications.map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
-    </section>
-  )
-}
+    </div>
+  </section>
+)
 
 export default StoryAbout
