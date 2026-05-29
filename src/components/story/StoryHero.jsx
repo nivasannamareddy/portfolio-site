@@ -1,9 +1,6 @@
-import { lazy, Suspense, useMemo } from 'react'
+import { useMemo } from 'react'
 import { motion as Motion } from 'framer-motion'
 import { ArrowRight, Github, Linkedin, MapPin } from 'lucide-react'
-import useSceneEnabled from '../../hooks/useSceneEnabled'
-
-const StoryHeroScene = lazy(() => import('./StoryHeroScene'))
 
 const container = {
   initial: {},
@@ -15,7 +12,6 @@ const item = {
 }
 
 const StoryHero = ({ data, highlights, socials }) => {
-  const sceneEnabled = useSceneEnabled(960)
   const displayTitle = data.title?.replace(' | ', ' · ') || data.title
 
   const impactStrip = useMemo(
@@ -25,13 +21,8 @@ const StoryHero = ({ data, highlights, socials }) => {
 
   return (
     <section id="hero" className="relative overflow-hidden border-b border-white/[0.08] pb-16 pt-6 sm:pb-24 sm:pt-10">
-      {/* Scene */}
+      {/* Background */}
       <div className="absolute inset-0 -z-10">
-        {sceneEnabled && (
-          <Suspense fallback={null}>
-            <StoryHeroScene />
-          </Suspense>
-        )}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,17,24,1)_0%,rgba(12,17,24,0.92)_45%,rgba(12,17,24,0.72)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,rgba(56,189,248,0.09),transparent_32%),radial-gradient(circle_at_70%_70%,rgba(129,140,248,0.07),transparent_28%)]" />
       </div>
