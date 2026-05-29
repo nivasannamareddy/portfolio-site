@@ -114,13 +114,13 @@ const StorySystems = () => {
           <p className="eyebrow">Process</p>
           <h2 className="section-title mt-4">How I build ML systems</h2>
           <p className="mt-4 section-copy">
-            Every project follows the same rigorous loop — understand the problem, explore the data, model carefully, ship reliably, then improve continuously.
+            Every project follows the same rigorous loop: understand the problem, explore the data, model carefully, ship reliably, then improve continuously.
           </p>
         </Motion.div>
 
         {/* Pipeline */}
         <div className="relative mt-12">
-          {/* Animated connector line — desktop */}
+          {/* Animated connector line, desktop */}
           <div
             className="pointer-events-none absolute left-0 right-0 top-[2.15rem] hidden overflow-hidden lg:block"
             aria-hidden="true"

@@ -15,7 +15,7 @@ const config = {
     resumeUrl: '/resume.pdf',
     avatar: '/assets/profile.png',
     status: 'Available for Full-Time, Internship & Contract Roles',
-    bio: "I'm a software engineer who's spent most of my recent time deep in ML systems, building pipelines, compliance frameworks, and data platforms that actually have to work under real constraints. Most recently I worked on a compliance framework for multi-agent LLM systems — when AI agents share memory across healthcare, finance, and HR workflows, what stops them from leaking sensitive data or holding records past their retention window? We built a benchmark with 274 test scenarios to find exactly where things break, then built a middleware system to fix it. PII leak rate dropped from 89% to 25%. Compliance went from 41% to 73%. Before that I automated a client data pipeline through UT Dallas that cut processing time by 30%, built demand forecasting models at AICTE that reduced manual reporting by 40%, and shipped full-stack systems in Java, Spring Boot, Python, and React across different projects.",
+    bio: "I'm a software engineer who's spent most of my recent time deep in ML systems, building pipelines, compliance frameworks, and data platforms that actually have to work under real constraints. Most recently I worked on a compliance framework for multi-agent LLM systems. When AI agents share memory across healthcare, finance, and HR workflows, what stops them from leaking sensitive data or holding records past their retention window? We built a benchmark with 274 test scenarios to find exactly where things break, then built a middleware system to fix it. PII leak rate dropped from 89% to 25%. Compliance went from 41% to 73%. Before that I automated a client data pipeline through UT Dallas that cut processing time by 30%, built demand forecasting models at AICTE that reduced manual reporting by 40%, and shipped full-stack systems in Java, Spring Boot, Python, and React across different projects.",
   },
   socials: {
     linkedin: 'https://www.linkedin.com/in/nivasannamareddy',
@@ -26,22 +26,22 @@ const config = {
     {
       label: 'PII Leak Rate',
       value: '25%',
-      description: 'Down from 89% — multi-agent compliance middleware across healthcare, finance, and HR workflows.',
+      description: 'Down from 89% | Multi-agent compliance middleware across healthcare, finance, and HR workflows.',
     },
     {
       label: 'Compliance Score',
       value: '73%',
-      description: 'Up from 41% — 274-scenario benchmark and middleware for multi-agent LLM pipelines.',
+      description: 'Up from 41% | 274-scenario benchmark and middleware for multi-agent LLM pipelines.',
     },
     {
       label: 'Pipeline Speed',
       value: '30%',
-      description: 'Faster processing — automated client data pipeline at UT Dallas.',
+      description: 'Faster processing | Automated client data pipeline at UT Dallas.',
     },
     {
       label: 'Manual Reporting',
       value: '40%',
-      description: 'Reduction in manual work — Power BI dashboards for demand forecasting at AICTE.',
+      description: 'Reduction in manual work | Power BI dashboards for demand forecasting at AICTE.',
     },
   ],
   skills: [

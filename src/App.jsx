@@ -34,7 +34,7 @@ const SectionFallback = () => (
 function App() {
   const [activeSection, setActiveSection] = useState('skills')
   const [siteData, setSiteData] = useState(() => {
-    const stored = localStorage.getItem('site-data-v4')
+    const stored = localStorage.getItem('site-data-v5')
     if (stored) {
       try {
         return mergeDeep(config, JSON.parse(stored))
@@ -54,7 +54,7 @@ function App() {
   }, [siteData.meta.description, siteData.meta.title])
 
   useEffect(() => {
-    localStorage.setItem('site-data-v4', JSON.stringify(siteData))
+    localStorage.setItem('site-data-v5', JSON.stringify(siteData))
   }, [siteData])
 
   useEffect(() => {
@@ -135,7 +135,7 @@ function App() {
 
   const resetContent = () => {
     setSiteData(config)
-    localStorage.removeItem('site-data-v4')
+    localStorage.removeItem('site-data-v5')
   }
 
   const exportContent = () => {
@@ -154,7 +154,7 @@ function App() {
     try {
       const mergedData = mergeDeep(config, data)
       setSiteData(mergedData)
-      localStorage.setItem('site-data-v4', JSON.stringify(mergedData))
+      localStorage.setItem('site-data-v5', JSON.stringify(mergedData))
     } catch (error) {
       console.error('Import failed', error)
     }

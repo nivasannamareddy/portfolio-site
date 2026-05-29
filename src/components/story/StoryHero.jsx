@@ -20,9 +20,9 @@ const StoryHero = ({ data, highlights, socials }) => {
   )
 
   return (
-    <section id="hero" className="relative overflow-hidden border-b border-white/[0.08] pb-16 pt-6 sm:pb-24 sm:pt-10">
+    <section id="hero" className="relative border-b border-white/[0.08] pb-16 pt-6 sm:pb-24 sm:pt-10">
       {/* Background */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,17,24,1)_0%,rgba(12,17,24,0.92)_45%,rgba(12,17,24,0.72)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_20%,rgba(56,189,248,0.09),transparent_32%),radial-gradient(circle_at_70%_70%,rgba(129,140,248,0.07),transparent_28%)]" />
       </div>
@@ -73,7 +73,7 @@ const StoryHero = ({ data, highlights, socials }) => {
               <br />
               that work under{' '}
               <span
-                className="italic bg-clip-text text-transparent"
+                className="bg-clip-text text-transparent"
                 style={{ backgroundImage: 'linear-gradient(100deg, #38bdf8 0%, #818cf8 100%)' }}
               >
                 real constraints
