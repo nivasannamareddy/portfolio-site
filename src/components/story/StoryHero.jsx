@@ -67,7 +67,7 @@ const StoryHero = ({ data, highlights, socials }) => {
             {/* Headline */}
             <Motion.h1
               variants={item}
-              className="mt-7 font-display text-[clamp(2.6rem,5vw,5rem)] leading-[0.91] tracking-[-0.05em] text-[color:var(--text)]"
+              className="mt-7 font-display text-[clamp(2.35rem,4.6vw,4.7rem)] leading-[0.91] tracking-[-0.05em] text-[color:var(--text)]"
             >
               Building intelligent systems
               <br />
