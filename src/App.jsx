@@ -16,6 +16,7 @@ const StoryGithub = lazy(() => import('./components/story/StoryGithub'))
 const StorySkills = lazy(() => import('./components/story/StorySkills'))
 const StoryCertifications = lazy(() => import('./components/story/StoryCertifications'))
 const StoryTimeline = lazy(() => import('./components/story/StoryTimeline'))
+const StoryPublications = lazy(() => import('./components/story/StoryPublications'))
 const StoryContact = lazy(() => import('./components/story/StoryContact'))
 
 const sections = [
@@ -34,7 +35,7 @@ const SectionFallback = () => (
 function App() {
   const [activeSection, setActiveSection] = useState('skills')
   const [siteData, setSiteData] = useState(() => {
-    const stored = localStorage.getItem('site-data-v5')
+    const stored = localStorage.getItem('site-data-v6')
     if (stored) {
       try {
         return mergeDeep(config, JSON.parse(stored))
@@ -54,7 +55,7 @@ function App() {
   }, [siteData.meta.description, siteData.meta.title])
 
   useEffect(() => {
-    localStorage.setItem('site-data-v5', JSON.stringify(siteData))
+    localStorage.setItem('site-data-v6', JSON.stringify(siteData))
   }, [siteData])
 
   useEffect(() => {
@@ -135,7 +136,7 @@ function App() {
 
   const resetContent = () => {
     setSiteData(config)
-    localStorage.removeItem('site-data-v5')
+    localStorage.removeItem('site-data-v6')
   }
 
   const exportContent = () => {
@@ -154,7 +155,7 @@ function App() {
     try {
       const mergedData = mergeDeep(config, data)
       setSiteData(mergedData)
-      localStorage.setItem('site-data-v5', JSON.stringify(mergedData))
+      localStorage.setItem('site-data-v6', JSON.stringify(mergedData))
     } catch (error) {
       console.error('Import failed', error)
     }
@@ -190,6 +191,7 @@ function App() {
             items={siteData.timeline.filter((item) => item.type === 'experience')}
             variant="experience"
           />
+          <StoryPublications items={siteData.publications} />
           <StoryGithub githubUrl={siteData.socials.github} projects={siteData.projects} />
           <StoryContact
             contact={siteData.contact}

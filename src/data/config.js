@@ -169,16 +169,17 @@ const config = {
   ],
   publications: [
     {
-      title:
-        'Advancing Multilingual Communication: Real-Time Language Translation in Social Media Platforms Leveraging Advanced Machine Learning Models',
-      description:
-        'Research on real-time multilingual translation pipelines for social media, emphasizing accuracy and response-time improvements with advanced ML models.',
+      title: 'Advancing Multilingual Communication: Real-Time Language Translation in Social Media Platforms Leveraging Advanced Machine Learning Models',
+      publisher: 'Journal of Chemical Health Risks (JCHR)',
+      date: 'May 3, 2024',
+      description: 'Developed a real-time multilingual translation strategy for social networking platforms using cutting-edge machine learning techniques. Prioritizes precision and maximizes translation rates for seamless cross-language communication. Scopus indexed.',
       link: 'https://jchr.org/index.php/JCHR/article/view/4319',
     },
     {
       title: 'Comparison of Various Face Recognition Algorithms in ML/DS',
-      description:
-        'Comparative study of face recognition algorithms, evaluating accuracy and performance across ML/DL approaches.',
+      publisher: 'Institute of Electrical and Electronics Engineers (IEEE)',
+      date: 'Apr 25, 2023',
+      description: 'Compared six face recognition algorithms — Viola Jones, SVM, KLT, AdaBoost, Hybrid Detection, and Elman Neural Network — across varying lighting, occlusion, and dataset conditions. Elman Neural Network with HSI color space achieved 94% recognition accuracy; Hybrid approach reached 96% detection accuracy. Concluded no single algorithm fits all use cases and proposed a future hybrid system.',
       link: 'https://ieeexplore.ieee.org/document/10104690',
     },
   ],
