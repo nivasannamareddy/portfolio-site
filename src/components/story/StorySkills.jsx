@@ -29,7 +29,7 @@ const skillCards = [
     color: '#34d399',
     bg: 'rgba(52,211,153,0.12)',
     title: 'AI / Machine Learning',
-    items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Hugging Face', 'LangGraph', 'Multi-Agent Systems', 'NLP', 'Time Series (ARIMA, Prophet)'],
+    items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Hugging Face', 'LangGraph', 'Multi-Agent Systems', 'NLP', 'Time Series (ARIMA, Prophet)', 'EDA', 'Feature Engineering'],
     style: 'tags',
   },
   {
@@ -45,7 +45,7 @@ const skillCards = [
     color: '#fb923c',
     bg: 'rgba(251,146,60,0.12)',
     title: 'Backend & Cloud',
-    items: ['Spring Boot', 'Node.js', 'Docker', 'AWS'],
+    items: ['Spring Boot', 'Node.js', 'Docker', 'AWS', 'Azure', 'CI/CD', 'Red Hat'],
     style: 'tags',
   },
   {
@@ -69,7 +69,7 @@ const skillCards = [
     color: '#facc15',
     bg: 'rgba(250,204,21,0.12)',
     title: 'Developer Tools',
-    items: ['Git', 'Jupyter Notebook', 'Google Colab', 'Agile / Scrum'],
+    items: ['Git', 'Jupyter Notebook', 'Google Colab', 'Agile / Scrum', 'Salesforce'],
     style: 'tags',
   },
 ]
